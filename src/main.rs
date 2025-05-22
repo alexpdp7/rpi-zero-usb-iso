@@ -63,7 +63,7 @@ fn main() {
                 .write_all(include_bytes!("rpi-zero-usb-iso.service"))
                 .unwrap();
             assert!(std::process::Command::new("systemctl")
-                .args(["--user", "enable", "--now", "rpi-zero-usb-iso.service"])
+                .args(["--user", "enable", "rpi-zero-usb-iso.service"])
                 .status()
                 .unwrap()
                 .success());
