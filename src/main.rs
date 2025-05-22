@@ -24,8 +24,14 @@ fn enable_usb() -> bool {
     true
 }
 
+fn iso_directory() -> std::path::PathBuf {
+    std::env::home_dir().unwrap().join("isos")
+}
+
 fn main() {
     let requires_reboot = enable_usb();
+    std::fs::create_dir_all(iso_directory()).unwrap();
+    eprintln!("Place isos at {:?}", iso_directory());
     if requires_reboot {
         eprintln!("Reboot");
     }
