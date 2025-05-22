@@ -1,5 +1,7 @@
 use std::io::Write as _;
+use std::os::linux::fs::MetadataExt;
 
+use clap::Parser;
 use tempfile::NamedTempFile;
 
 static DT_OVERLAY: &str = "dtoverlay=dwc2\n";
@@ -28,11 +30,50 @@ fn iso_directory() -> std::path::PathBuf {
     std::env::home_dir().unwrap().join("isos")
 }
 
+#[derive(Parser)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(clap::Subcommand)]
+enum Commands {
+    Setup,
+    Iso,
+}
+
 fn main() {
-    let requires_reboot = enable_usb();
-    std::fs::create_dir_all(iso_directory()).unwrap();
-    eprintln!("Place isos at {:?}", iso_directory());
-    if requires_reboot {
-        eprintln!("Reboot");
+    let args = Cli::parse();
+    match args.command {
+        Commands::Setup => {
+            let requires_reboot = enable_usb();
+            std::fs::create_dir_all(iso_directory()).unwrap();
+            eprintln!("Place isos at {:?}", iso_directory());
+            if requires_reboot {
+                eprintln!("Reboot");
+            }
+        }
+        Commands::Iso => {
+            let mut isos = iso_directory()
+                .read_dir()
+                .unwrap()
+                .flatten()
+                .collect::<Vec<_>>();
+            isos.sort_by_key(|de| de.metadata().unwrap().st_mtime());
+            eprintln!("Found isos by date {isos:?}");
+            let iso = isos.last().expect("to have one iso");
+            eprintln!("Using {iso:?}");
+            assert!(
+                std::process::Command::new("sudo")
+                    .args([
+                        "modprobe",
+                        "g_mass_storage",
+                        &format!("file={}", iso.path().to_str().unwrap()),
+                    ])
+                    .status()
+                    .unwrap()
+                    .success()
+            );
+        }
     }
 }

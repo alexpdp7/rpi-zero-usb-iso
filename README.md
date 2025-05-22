@@ -21,5 +21,5 @@ $ rustup target add aarch64-unknown-linux-gnu
 ### Building and running
 
 ```
-$ cargo build --target=aarch64-unknown-linux-gnu && scp target/aarch64-unknown-linux-gnu/debug/rpi-zero-usb-iso store: && ssh store ./rpi-zero-usb-iso
+$ cargo build --target=aarch64-unknown-linux-gnu && scp target/aarch64-unknown-linux-gnu/debug/rpi-zero-usb-iso store: && ssh store ./rpi-zero-usb-iso ...
 ```
