@@ -1,0 +1,8 @@
+[Unit]
+
+[Service]
+ExecStart=%h/.local/bin/rpi-zero-usb-iso iso
+Type=oneshot
+
+[Install]
+WantedBy=default.target
