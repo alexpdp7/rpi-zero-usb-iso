@@ -24,3 +24,7 @@ jobs:
       with:
         name: rpi-zero-usb-iso
         path: target/aarch64-unknown-linux-gnu/release/rpi-zero-usb-iso
+    - run: gh release create --generate-notes -t "Release $(date "+%Y-%m-%d_%H%M")" release_$(date "+%Y-%m-%d_%H%M") target/aarch64-unknown-linux-gnu/release/rpi-zero-usb-iso
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
