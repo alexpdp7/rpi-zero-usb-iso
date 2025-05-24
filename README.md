@@ -1,21 +1,39 @@
 # rpi-zero-usb-iso
 
+Tasks such as installing Linux frequently require creating USB bootable drives.
+This requires wiping out a USB drive for each bootable drive you want to create.
+Alternatives such as [Ventoy](https://www.ventoy.net/) tackle this problem.
+
+rpi-zero-usb-iso provides an alternative: use the Linux Mass Storage Gadget feature on a Raspberry Pi to expose ISO files in a directory as USB bootable drives.
+
+## Requirements
+
+A Raspberry Pi that can run connected to a USB port of a computer.
+
+This project has been tested with:
+
+* Raspberry Pi Zero 2 W
+  * Raspberry Pi OS Lite
+  * Installed with [Raspberry Pi Imager](https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager) (with network configuration to access via SSH)
+  * An [EP-0097](https://wiki.52pi.com/index.php/EP-0097) so the Pi can be powered safely from the USB port
+
 ## Setup
 
-* Use [Imager](https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager) to burn Rasperry Pi OS LITE, with SSH access, to a MicroSD card.
-* Start your Raspberry with the MicroSD card.
-* Connect to the Raspberry with `ssh`.
-* `mkdir -p .local/bin`
-* Copy `rpi-zero-usb-iso` to `.local/bin`.
-* `rpi-zero-usb-iso setup`
-* Copy at least one ISO to the ISOs directory.
-* Reboot if prompted.
+```
+mkdir -p .local/bin
+wget https://github.com/alexpdp7/rpi-zero-usb-iso/releases/latest/download/rpi-zero-usb-iso -O .local/bin/rpi-zero-usb-iso
+chmod +x .local/bin/rpi-zero-usb-iso
+rpi-zero-usb-iso setup
+```
+
+Copy at least one ISO to the ISOs directory, then reboot the Raspberry if prompted by `rpi-zero-usb-iso setup`.
 
 ## Usage
 
 Copy ISOs to the ISOs directory.
 
 `rpi-zero-usb-iso` automatically uses the last modified ISO on boot.
+Use `touch` to "select" an ISO.
 
 ## Hacking
 
