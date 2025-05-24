@@ -42,6 +42,17 @@ Use `touch` to "select" an ISO.
 Windows installer ISOs only support their use as optical media.
 Use <https://github.com/alexpdp7/windows-usb/> to convert ISOs downloaded from Microsoft to USB images that rpi-zero-usb-iso can use.
 
+### Tested media
+
+* Completed a full install
+  * Windows 11 24H2 (using windows-usb to convert optical media)
+  * ChromeOS Flex `16002.51.0_reven_recovery_stable-channel_mp-v6`
+* Only smoke tested installer start
+  * Proxmox VE 8.4
+  * Debian 12.11.0
+  * Ubuntu 22.04.5
+  * Ubuntu 24.04.2
+
 ## Hacking
 
 ### Setup
