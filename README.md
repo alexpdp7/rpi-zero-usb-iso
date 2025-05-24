@@ -13,7 +13,7 @@ A Raspberry Pi that can run connected to a USB port of a computer.
 This project has been tested with:
 
 * Raspberry Pi Zero 2 W
-  * Raspberry Pi OS Lite
+  * Raspberry Pi OS Lite Bookworm
   * Installed with [Raspberry Pi Imager](https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager) (with network configuration to access via SSH)
   * An [EP-0097](https://wiki.52pi.com/index.php/EP-0097) so the Pi can be powered safely from the USB port
 
