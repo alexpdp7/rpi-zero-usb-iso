@@ -10,7 +10,7 @@ rpi-zero-usb-iso provides an alternative: use the Linux Mass Storage Gadget feat
 
 A Raspberry Pi that can run connected to a USB port of a computer.
 
-This project has been tested with:
+I have tested this with:
 
 * Raspberry Pi Zero 2 W
   * Raspberry Pi OS Lite Bookworm
@@ -58,3 +58,8 @@ $ rustup target add aarch64-unknown-linux-musl
 ```
 $ cargo build --target=aarch64-unknown-linux-musl && scp target/aarch64-unknown-linux-musl/debug/rpi-zero-usb-iso x: && ssh x ./rpi-zero-usb-iso ...
 ```
+
+### Contributing
+
+Patches are welcome, but I can only test on my hardware.
+Happy if others add support for more hardware, but I can only recommend using the hardware that has been tested.
