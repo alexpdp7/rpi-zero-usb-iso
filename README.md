@@ -37,6 +37,11 @@ Copy ISOs to the ISOs directory.
 `rpi-zero-usb-iso` automatically uses the last modified ISO on boot.
 Use `touch` to "select" an ISO.
 
+### Windows
+
+Windows installer ISOs only support their use as optical media.
+Use <https://github.com/alexpdp7/windows-usb/> to convert ISOs downloaded from Microsoft to USB images that rpi-zero-usb-iso can use.
+
 ## Hacking
 
 ### Setup
