@@ -20,9 +20,9 @@ I have tested this with:
 ## Setup
 
 ```
-mkdir -p .local/bin
-wget https://github.com/alexpdp7/rpi-zero-usb-iso/releases/latest/download/rpi-zero-usb-iso -O .local/bin/rpi-zero-usb-iso
-chmod +x .local/bin/rpi-zero-usb-iso
+mkdir -p ~/.local/bin
+wget https://github.com/alexpdp7/rpi-zero-usb-iso/releases/latest/download/rpi-zero-usb-iso -O ~/.local/bin/rpi-zero-usb-iso
+chmod +x ~/.local/bin/rpi-zero-usb-iso
 rpi-zero-usb-iso setup
 ```
 
