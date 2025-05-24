@@ -17,6 +17,8 @@ I have tested this with:
   * Installed with [Raspberry Pi Imager](https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager) (with network configuration to access via SSH)
   * An [EP-0097](https://wiki.52pi.com/index.php/EP-0097) so the Pi can be powered safely from the USB port
 
+See [this post on the Raspberry Pi forums for details on other systems that might work and caveats](https://forums.raspberrypi.com/viewtopic.php?t=388185#p2316711).
+
 ## Setup
 
 ```
