@@ -26,17 +26,17 @@ Copy ISOs to the ISOs directory.
 `~/.cargo/config.toml`:
 
 ```
-[target.aarch64-unknown-linux-gnu]
+[target.aarch64-unknown-linux-musl]
 linker = "/usr/bin/aarch64-linux-gnu-gcc-12"
 ```
 
 ```
 $ sudo apt install gcc-12-aarch64-linux-gnu
-$ rustup target add aarch64-unknown-linux-gnu
+$ rustup target add aarch64-unknown-linux-musl
 ```
 
 ### Building and running
 
 ```
-$ cargo build --target=aarch64-unknown-linux-gnu && scp target/aarch64-unknown-linux-gnu/debug/rpi-zero-usb-iso store: && ssh store ./rpi-zero-usb-iso ...
+$ cargo build --target=aarch64-unknown-linux-musl && scp target/aarch64-unknown-linux-musl/debug/rpi-zero-usb-iso x: && ssh x ./rpi-zero-usb-iso ...
 ```
