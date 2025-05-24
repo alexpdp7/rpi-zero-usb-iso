@@ -16,11 +16,13 @@ fn enable_usb() -> bool {
     config_txt.push_str(DT_OVERLAY);
     let mut file = NamedTempFile::new().unwrap();
     file.write_all(&config_txt.into_bytes()).unwrap();
-    assert!(std::process::Command::new("sudo")
-        .args(["mv", file.path().to_str().unwrap(), CONFIG_TXT_PATH])
-        .status()
-        .unwrap()
-        .success());
+    assert!(
+        std::process::Command::new("sudo")
+            .args(["mv", file.path().to_str().unwrap(), CONFIG_TXT_PATH])
+            .status()
+            .unwrap()
+            .success()
+    );
     true
 }
 
@@ -47,11 +49,13 @@ fn main() {
             let requires_reboot = enable_usb();
             std::fs::create_dir_all(iso_directory()).unwrap();
             eprintln!("Place isos at {:?}", iso_directory());
-            assert!(std::process::Command::new("loginctl")
-                .arg("enable-linger")
-                .status()
-                .unwrap()
-                .success());
+            assert!(
+                std::process::Command::new("loginctl")
+                    .arg("enable-linger")
+                    .status()
+                    .unwrap()
+                    .success()
+            );
             let systemd_user_directory = std::env::home_dir()
                 .unwrap()
                 .join(".config")
@@ -62,11 +66,13 @@ fn main() {
                 .unwrap()
                 .write_all(include_bytes!("rpi-zero-usb-iso.service"))
                 .unwrap();
-            assert!(std::process::Command::new("systemctl")
-                .args(["--user", "enable", "rpi-zero-usb-iso.service"])
-                .status()
-                .unwrap()
-                .success());
+            assert!(
+                std::process::Command::new("systemctl")
+                    .args(["--user", "enable", "rpi-zero-usb-iso.service"])
+                    .status()
+                    .unwrap()
+                    .success()
+            );
             if requires_reboot {
                 eprintln!("Reboot");
             }
@@ -81,15 +87,17 @@ fn main() {
             eprintln!("Found isos by date {isos:?}");
             let iso = isos.last().expect("to have one iso");
             eprintln!("Using {iso:?}");
-            assert!(std::process::Command::new("sudo")
-                .args([
-                    "modprobe",
-                    "g_mass_storage",
-                    &format!("file={}", iso.path().to_str().unwrap()),
-                ])
-                .status()
-                .unwrap()
-                .success());
+            assert!(
+                std::process::Command::new("sudo")
+                    .args([
+                        "modprobe",
+                        "g_mass_storage",
+                        &format!("file={}", iso.path().to_str().unwrap()),
+                    ])
+                    .status()
+                    .unwrap()
+                    .success()
+            );
         }
     }
 }
