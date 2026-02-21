@@ -2,9 +2,14 @@
 
 Tasks such as installing Linux frequently require creating USB bootable drives.
 This requires wiping out a USB drive for each bootable drive you want to create.
-Alternatives such as [Ventoy](https://www.ventoy.net/) tackle this problem.
 
 rpi-zero-usb-iso provides an alternative: use the Linux Mass Storage Gadget feature on a Raspberry Pi to expose ISO files in a directory as USB bootable drives.
+
+Alternatives:
+
+* iODD sells external USB drives that can emulate CDROM drives.
+* netboot.xyz and other netboot images can boot operating systems over the network.
+* Multiboot USB software like Ventoy or YUMI.
 
 ## Requirements
 
